@@ -5,6 +5,7 @@ import torch.nn.functional as F
 
 
 def get_backbone(name):
+    name = name.lower()
     if name == "resnet18":
         backbone = models.resnet18(pretrained=True)
     elif name == "resnet34":
@@ -33,7 +34,7 @@ def get_backbone(name):
 def get_gcl(
     name, pool, last_layer=None, norm=None, p_gem=3, mode="siamese", model_file=""
 ):
-    model = create_model(name, pool, norm, mode="single")
+    model = create_model(name=name, pool=pool, norm=norm, mode="single")
     try:
         model.load_state_dict(torch.load(model_file)["model_state_dict"])
     except:
@@ -55,6 +56,9 @@ def create_model(name, pool, last_layer=None, norm=None, p_gem=3, mode="siamese"
         last_layer = last_layer * 8 - 2
     aux = 0
     for c in backbone.children():
+        print(type(aux), " ", aux)
+        print(type(layers), " ", layers)
+        print(type(last_layer), " ", last_layer)
         if aux < layers - last_layer:
             print(aux, c._get_name(), "IS FROZEN")
             for p in c.parameters():

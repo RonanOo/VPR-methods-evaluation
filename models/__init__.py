@@ -25,11 +25,10 @@ def get_model(method, backbone=None, descriptors_dimension=None):
         model = convap.get_convap(descriptors_dimension=descriptors_dimension)
     elif method == "gcl":
         model = gcl.get_gcl(
-            backbone=backbone,
+            name=backbone,
             pool="GeM",
-            norm="L2",
             mode="single",
-            model_file="trained_models/gcl/gcl.pth.tar",
+            model_file="models/GCL/MSLS_resnet152_GeM_480_GCL.pth",
         )
 
     return model
