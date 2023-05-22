@@ -5,3 +5,5 @@ logs/
 trained_models/
 .venv
 *.pth
+*.out
+*.sbatch
