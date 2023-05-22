@@ -7,7 +7,7 @@ from models import netvlad
 from models import gcl
 
 
-def get_model(method, backbone=None, descriptors_dimension=None):
+def get_model(method, backbone=None, descriptors_dimension=None, model_file=None):
     if method == "sfrs":
         model = sfrs.SFRSModel()
     elif method == "netvlad":
@@ -28,7 +28,7 @@ def get_model(method, backbone=None, descriptors_dimension=None):
             name=backbone,
             pool="GeM",
             mode="single",
-            model_file="models/GCL/MSLS_resnet152_GeM_480_GCL.pth",
+            model_file=model_file,
         )
 
     return model

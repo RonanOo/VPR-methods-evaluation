@@ -1,9 +1,7 @@
-
 # VPR-methods-evaluation
 
 This repo is used to easily evaluate pre-trained Visual Place Recognition methods.
 A number of trained models are supported (e.g. NetVLAD, SFRS, CosPlace, MixVPR...) and it uses the weights released by the respective authors.
-
 
 ## How to use
 
@@ -25,11 +23,17 @@ python3 main.py --method=cosplace --backbone=ResNet18 --descriptors_dimension=51
     --database_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/database \
     --queries_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/queries
 ```
+
 This should produce this as output `R@1: 98.8, R@5: 99.7, R@10: 99.9, R@20: 100.0`, which will be saved in a log file under `./logs/`
+
+Specifically for the GCL model you can run
+
+```
+python3 main.py --method=gcl --backbone=ResNet152 --descriptors_dimension=2048 --database_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/database --queries_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/queries
+```
 
 You can easily change the paths for different datasets, and you can use any of the following methods: NetVLAD, SFRS, CosPlace, Conv-AP, MixVPR.
 Note that each method has weights only for certain architectures. For example NetVLAD only has weights for VGG16 with descriptors_dimension 32768 and 4069 (with PCA).
-
 
 ### Visualize predictions
 
@@ -41,6 +45,7 @@ python3 main.py --method=cosplace --backbone=ResNet18 --descriptors_dimension=51
     --database_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/database \
     --queries_folder=../VPR-datasets-downloader/datasets/st_lucia/images/test/queries
 ```
+
 will generate under the path `./logs/cosplace_on_stlucia/*/preds` images such as
 
 <p float="left">
@@ -49,10 +54,10 @@ will generate under the path `./logs/cosplace_on_stlucia/*/preds` images such as
 
 Given that saving predictions for each query might take long, you can also pass the parameter `--save_only_wrong_preds` which will save only predictions for wrongly predicted queries (i.e. where the first prediction is wrong).
 
-
 ## Acknowledgements
 
 If you use this repository please cite our benchmark paper
+
 ```
 @inProceedings{Berton_CVPR_2022_benchmark,
     author    = {Berton, Gabriele and Mereu, Riccardo and Trivigno, Gabriele and Masone, Carlo and
@@ -65,4 +70,3 @@ If you use this repository please cite our benchmark paper
 ```
 
 Kudos to the authors of [NetVLAD](https://github.com/Relja/netvlad), [SFRS](https://github.com/yxgeee/OpenIBL), [CosPlace](https://github.com/Relja/netvlad), [Conv-AP](https://github.com/amaralibey/gsv-cities) and [MixVPR](https://github.com/amaralibey/mixVPR) for open sourcing their models' weights. The code for each model has been taken from their respective repositories, excpet for the code for NetVLAD which has been taken from [hloc](https://github.com/cvg/Hierarchical-Localization).
-

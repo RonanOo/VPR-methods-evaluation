@@ -69,6 +69,13 @@ def parse_arguments():
         "wrongly predicted queries",
     )
 
+    parser.add_argument(
+        "--model_file",
+        type=str,
+        default=None,
+        help="path/to/model_file",
+    )
+
     args = parser.parse_args()
 
     if args.method == "netvlad":
