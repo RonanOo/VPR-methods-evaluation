@@ -1,0 +1,2 @@
+---- Dataset: ../VPR-datasets-downloader/datasets/st_lucia/images/test/ ----
+Model: models/GCL/MSLS_resnet152_avg_224_CL.pth ->   R@1: 59.2, R@5: 76.2, R@10: 82.5, R@20: 87.6

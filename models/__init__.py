@@ -24,9 +24,17 @@ def get_model(method, backbone=None, descriptors_dimension=None, model_file=None
     elif method == "convap":
         model = convap.get_convap(descriptors_dimension=descriptors_dimension)
     elif method == "gcl":
+        pool_mode = (
+            "GeM"
+            if "gem" in model_file.lower()
+            else "avg"
+            if "avg" in model_file.lower()
+            else "max"
+        )
+        backbone_mode = model_file.split("_")[1]
         model = gcl.get_gcl(
-            name=backbone,
-            pool="GeM",
+            name=backbone_mode,
+            pool=pool_mode,
             mode="single",
             model_file=model_file,
         )

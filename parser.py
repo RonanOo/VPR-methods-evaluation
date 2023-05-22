@@ -76,6 +76,13 @@ def parse_arguments():
         help="path/to/model_file",
     )
 
+    parser.add_argument(
+        "--number",
+        type=int,
+        default=0,
+        help="number of tester",
+    )
+
     args = parser.parse_args()
 
     if args.method == "netvlad":
