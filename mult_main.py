@@ -60,7 +60,7 @@ def test(
         all_descriptors = np.empty(
             (len(test_ds), descriptors_dimension), dtype="float32"
         )
-        for images, indices in tqdm(database_dataloader, ncols=100):
+        for images, indices in database_dataloader:
             descriptors = model(images.to(device))
             descriptors = descriptors.cpu().numpy()
             all_descriptors[indices.numpy(), :] = descriptors
@@ -77,7 +77,7 @@ def test(
         queries_dataloader = DataLoader(
             dataset=queries_subset_ds, num_workers=num_workers, batch_size=1
         )
-        for images, indices in tqdm(queries_dataloader, ncols=100):
+        for images, indices in queries_dataloader:
             descriptors = model(images.to(device))
             descriptors = descriptors.cpu().numpy()
             all_descriptors[indices.numpy(), :] = descriptors

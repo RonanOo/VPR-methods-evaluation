@@ -50,6 +50,7 @@ if __name__ == "__main__":
                 final_dictionary[dataset] = final_dictionary[dataset] + [
                     (model_file, result)
                 ]
+            print("Worked")
             break
 
     with open("results/" + str(args.number) + ".pkl", "wb") as f:
