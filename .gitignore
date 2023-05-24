@@ -7,3 +7,5 @@ trained_models/
 *.pth
 *.out
 *.sbatch
+*.pickle
+*.pkl
