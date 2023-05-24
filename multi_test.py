@@ -44,14 +44,13 @@ if __name__ == "__main__":
                 args.save_only_wrong_preds,
                 model_file,
             )
+            print("For model_file " + model_file)
             if dataset not in result:
                 final_dictionary[dataset] = [(model_file, result)]
             else:
                 final_dictionary[dataset] = final_dictionary[dataset] + [
                     (model_file, result)
                 ]
-            print("Worked")
-            break
 
-    with open("results/" + str(args.number) + ".pkl", "wb") as f:
-        pickle.dump(final_dictionary, f)
+        with open("results/" + str(args.number) + ".pkl", "wb") as f:
+            pickle.dump(final_dictionary, f)
