@@ -32,7 +32,7 @@ def get_backbone(name):
 
 
 def get_gcl(
-    name, pool, last_layer=None, norm=None, p_gem=3, mode="siamese", model_file=""
+    name, pool, last_layer=None, norm="L2", p_gem=3, mode="siamese", model_file=""
 ):
     model = create_model(name=name, pool=pool, norm=norm, mode="single")
     try:
