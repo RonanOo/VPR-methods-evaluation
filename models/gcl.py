@@ -5,7 +5,6 @@ import torch.nn.functional as F
 
 
 def get_backbone(name):
-    name = name.lower()
     if name == "resnet18":
         backbone = models.resnet18(pretrained=True)
     elif name == "resnet34":

@@ -31,9 +31,8 @@ def get_model(method, backbone=None, descriptors_dimension=None, model_file=None
             if "avg" in model_file.lower()
             else "max"
         )
-        backbone_mode = model_file.split("_")[1]
         model = gcl.get_gcl(
-            name=backbone_mode,
+            name=backbone,
             pool=pool_mode,
             mode="single",
             model_file=model_file,

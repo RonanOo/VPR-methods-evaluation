@@ -21,9 +21,9 @@ def parse_arguments():
     )
     parser.add_argument(
         "--backbone",
-        type=str,
+        type=str.lower,
         default=None,
-        choices=[None, "VGG16", "ResNet18", "ResNet50", "ResNet101", "ResNet152"],
+        choices=[None, "vgg16", "resnet18", "resnet50", "resnet101", "resnet152", "resnext"],
         help="_",
     )
     parser.add_argument("--descriptors_dimension", type=int, default=None, help="_")
