@@ -82,6 +82,12 @@ def parse_arguments():
         default=0,
         help="number of tester",
     )
+        
+    parser.add_argument(
+        '--query_idx_file',
+        type=str,
+        required=False,
+        help='Query idx file, .json')
 
     args = parser.parse_args()
 
