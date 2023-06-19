@@ -12,6 +12,7 @@ def parse_arguments():
         default=25,
         help="distance (in meters) for a prediction to be considered a positive",
     )
+    
     parser.add_argument(
         "--method",
         type=str,
@@ -19,36 +20,42 @@ def parse_arguments():
         choices=["netvlad", "sfrs", "cosplace", "convap", "mixvpr", "gcl"],
         help="_",
     )
+    
     parser.add_argument(
         "--backbone",
-        type=str.lower,
+        type=str,
         default=None,
-        choices=[None, "vgg16", "resnet18", "resnet50", "resnet101", "resnet152", "resnext"],
+        choices=[None, 'VGG16', 'ResNet18', 'ResNet50', 'ResNet101', 'ResNet152', 'resnext'],
         help="_",
     )
+    
     parser.add_argument("--descriptors_dimension", type=int, default=None, help="_")
+    
     parser.add_argument(
-        "--database_folder", type=str, required=True, help="path/to/database"
+        "--root_dir", type=str, required=True, help="path/to/database"
     )
-    parser.add_argument(
-        "--queries_folder", type=str, required=True, help="path/to/queries"
-    )
+    parser.add_argument('--subset', required=False, default='val', help='For MSLS. Subset to test')
+    
     parser.add_argument("--num_workers", type=int, default=4, help="_")
+    
     parser.add_argument(
         "--batch_size",
         type=int,
         default=4,
         help="set to 1 if database images may have different resolution",
     )
+    
     parser.add_argument(
         "--exp_name",
         type=str,
         default="default",
         help="experiment name, output logs will be saved under logs/exp_name",
     )
+    
     parser.add_argument(
         "--device", type=str, default="cuda", choices=["cuda", "cpu"], help="_"
     )
+    
     parser.add_argument(
         "--recall_values",
         type=int,
@@ -56,12 +63,14 @@ def parse_arguments():
         default=[1, 5, 10, 20],
         help="values for recall (e.g. recall@1, recall@5)",
     )
+    
     parser.add_argument(
         "--num_preds_to_save",
         type=int,
         default=0,
         help="set != 0 if you want to save predictions for each query",
     )
+    
     parser.add_argument(
         "--save_only_wrong_preds",
         action="store_true",
@@ -88,6 +97,10 @@ def parse_arguments():
         type=str,
         required=False,
         help='Query idx file, .json')
+    
+    parser.add_argument('--corruption', type=str, default=None, help='Corruption to evaluate (in string format or as integer in [0,18])')
+    
+    parser.add_argument('--severity', type=int, default=None, help='Severity of corruption')
 
     args = parser.parse_args()
 

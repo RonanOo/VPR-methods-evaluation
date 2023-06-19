@@ -7,7 +7,7 @@ from models import netvlad
 from models import gcl
 
 
-def get_model(method, backbone=None, descriptors_dimension=None, model_file=None):
+def get_model(method, backbone, descriptors_dimension, model_file):
     if method == "sfrs":
         model = sfrs.SFRSModel()
     elif method == "netvlad":
